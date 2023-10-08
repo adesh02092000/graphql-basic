@@ -17,6 +17,8 @@ export const typeDefs = `#graphql
         verified: Boolean!
     }
 
+
+    # Query entry points
     type Query {
         reviews: [Review]
         games: [Game]
