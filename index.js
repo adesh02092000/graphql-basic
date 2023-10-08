@@ -5,6 +5,7 @@ import { typeDefs } from './schema.js'
 import db from './_db.js'
 
 const resolvers = {
+  // For entry points
   Query: {
     games() {
       return db.games
@@ -23,6 +24,17 @@ const resolvers = {
     },
     author(_, args) {
       return db.authors.find(author => author.id === args.id)
+    },
+  },
+  // For nested Query
+  Game: {
+    reviews(parent) {
+      return db.reviews.filter(review => review.game_id === parent.id)
+    },
+  },
+  Author: {
+    reviews(parent) {
+      return db.reviews.filter(review => review.author_id === parent.id)
     },
   },
 }
